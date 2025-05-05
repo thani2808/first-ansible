@@ -1,0 +1,32 @@
+---
+- name: Hello World Playbook
+  hosts: ec2
+  become: yes
+  remote_user: ubuntu
+
+  tasks:
+    - name: Print Hello World
+      debug:
+        msg: "Hello, World!"
+
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Install Apache2
+      apt:
+        name: apache2
+        state: present
+
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Install PHP and PHP-FPM
+      apt:
+        name:
+          - php
+          - php-fpm
+        state: present
